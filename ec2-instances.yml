@@ -12,6 +12,7 @@
         aws_access_key: "{{ awskey }}"
         aws_secret_key: "{{ awssecretkey }}"
         group: default
+        keypair: dwelc
         instance_type: t2.large
         image: ami-07dc734dc14746eab # Ubuntu 18.04 LTS
         wait: true
