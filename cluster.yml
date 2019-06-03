@@ -20,8 +20,8 @@
   gather_facts: no
   hosts: localhost
   vars_files:
-   - global_vars/dw-vars.yml
-   - global_vars/pub-vars.yml
+    - global_vars/dw-vars.yml
+    - global_vars/pub-vars.yml
   roles: 
     - launch
 
@@ -32,4 +32,13 @@
   become_user: root
   roles:
     - install
+
+- name: Configure Kubernetes Cluster
+  gather_facts: no
+  vars_files:
+    - global_vars/pub-vars.yml
+  #become: true
+  #become_user: root
+  roles:
+    - config
     

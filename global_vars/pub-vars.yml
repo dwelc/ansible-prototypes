@@ -1,3 +1,6 @@
 worker_replicas: 1
 master_replicas: 1
 cluster_name: "dw-kubernetes-cluster"
+
+#Kubernetes
+kube_token: 0ya01m.f8q32wbij2wxg1d6
