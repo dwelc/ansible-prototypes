@@ -1,8 +1,22 @@
 - name: Init Kubernetes cluster
   shell: |
-    kubeadm init --pod-network-cidr 10.244.0.0/16 \
-                 --token {{ kube_token }}
+          kubeadm init --pod-network-cidr 10.244.0.0/16 \
+          --token {{ kube_token }}
   register: init_cluster
+
+- name: Create Kubernetes config directory
+  file:
+    path: ".kube/"
+    state: directory
+
+- name: Copy admin.conf to Home directory
+  when: init_cluster is succeeded
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: ".kube/config"
+    owner: ubuntu
+    group: ubuntu
+    mode: 0755
 
 
 
