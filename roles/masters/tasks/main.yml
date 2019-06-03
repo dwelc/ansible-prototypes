@@ -1,6 +1,6 @@
 - name: Init Kubernetes cluster
   shell: |
-    kubeadm init --pod-network-cidr 10.244.0.0/16 /
+    kubeadm init --pod-network-cidr 10.244.0.0/16 \
                  --token {{ kube_token }}
   register: init_cluster
 
