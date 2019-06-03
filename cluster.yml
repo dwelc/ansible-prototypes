@@ -1,0 +1,37 @@
+# demo_setup.yml
+
+- name: Generate Hosts File
+  gather_facts: no
+  hosts: localhost
+  tasks:
+    - name: Delete Existing File
+      file:
+        state: absent
+        path: /Users/dan/Documents/repos/ansible-prototypes/hosts
+    - name: Create New File
+      blockinfile:
+        create: yes
+        path: /Users/dan/Documents/repos/ansible-prototypes/hosts
+        block: |
+            [masters]
+            [workers]
+
+- name: Provision EC2 Instances
+  gather_facts: no
+  hosts: localhost
+  vars_files:
+   - global_vars/dw-vars.yml
+   - global_vars/pub-vars.yml
+  roles: 
+    - launch
+
+#- meta: refresh_inventory
+
+- name: Install Docker & Kubernetes
+  gather_facts: no
+  hosts: all
+  become: true
+  become_user: root
+  roles:
+    - install
+    

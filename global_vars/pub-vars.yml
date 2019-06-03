@@ -1,0 +1,3 @@
+worker_replicas: 1
+master_replicas: 1
+cluster_name: "dw-kubernetes-cluster"
