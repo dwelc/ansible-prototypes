@@ -33,12 +33,23 @@
   roles:
     - install
 
-- name: Configure Kubernetes Cluster
+- name: Configure Kubernetes Master
+  hosts: master
   gather_facts: no
   vars_files:
     - global_vars/pub-vars.yml
   #become: true
   #become_user: root
   roles:
-    - config
+    - master
+
+- name: Configure Kubernetes Workers
+  hosts: master
+  gather_facts: no
+  vars_files:
+    - global_vars/pub-vars.yml
+  #become: true
+  #become_user: root
+  roles:
+    - workers
     
