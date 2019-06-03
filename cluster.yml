@@ -38,14 +38,16 @@
   gather_facts: no
   vars_files:
     - global_vars/pub-vars.yml
-  #become: true
-  #become_user: root
+  become: yes
+  become_user: root
   roles:
     - masters
 
 - name: Configure Kubernetes Workers
   hosts: workers
   gather_facts: no
+  become: yes
+  become_user: root
   vars_files:
     - global_vars/pub-vars.yml
   #become: true
