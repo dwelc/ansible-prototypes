@@ -8,7 +8,9 @@
 - name: Join Workers To cluster
   hosts: Workers
   shell: |
-    
+    kubeadm join --token {{ kube_token }} \
+                 --discovery-token-unsafe-skip-ca-verification \
+                 {{ ec2masters.instances[0].public_ip }}:6443
 
 
 
