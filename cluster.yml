@@ -34,17 +34,17 @@
     - install
 
 - name: Configure Kubernetes Master
-  hosts: master
+  hosts: masters
   gather_facts: no
   vars_files:
     - global_vars/pub-vars.yml
   #become: true
   #become_user: root
   roles:
-    - master
+    - masters
 
 - name: Configure Kubernetes Workers
-  hosts: master
+  hosts: workers
   gather_facts: no
   vars_files:
     - global_vars/pub-vars.yml
