@@ -1,6 +1,6 @@
 - name: Init Kubernetes cluster
   shell: |
-          kubeadm init --pod-network-cidr 10.244.0.0/16 \
+          kubeadm init --pod-network-cidr 192.168.0.0/16 \
           --token {{ kube_token }}
   register: init_cluster
 
@@ -20,11 +20,9 @@
     remote_src: yes
   register: conf_copy
 
-- name: Configure Flannel Networking
-  when: conf_copy is succeeded
-  command: |
-            kubectl apply -f \
-            https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
-  run_once: true
+- name: Pass bridged IPv4 Traffic to iptables chains
+  shell: |
+          echo "net.bridge.bridge-nf-call-iptables=1" | sudo tee -a /etc/sysctl.conf && sysctl -p
+  register: traffic_config
 
 

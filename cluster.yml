@@ -54,4 +54,11 @@
   #become_user: root
   roles:
     - workers
-    
+
+- name: Configure Networking
+  hosts: masters
+  gather_facts: yes
+  vars_files:
+    - global_vars/pub-vars.yml
+  roles:
+    - network
