@@ -18,7 +18,13 @@
     group: ubuntu
     mode: 0755
     remote_src: yes
+  register: conf_copy
 
-
+- name: Configure Flannel Networking
+  when: conf_copy is succeeded
+  command: |
+            kubectl apply -f \
+            https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
+  run_once: true
 
 
