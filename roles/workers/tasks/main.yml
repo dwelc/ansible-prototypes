@@ -3,3 +3,8 @@
     kubeadm join --token {{ kube_token }} \
                  --discovery-token-unsafe-skip-ca-verification \
                  {{ kube_master_ip }}:6443
+
+- name: Pass bridged IPv4 Traffic to iptables chains
+  shell: |
+          echo "net.bridge.bridge-nf-call-iptables=1" | sudo tee -a /etc/sysctl.conf && sysctl -p
+  register: traffic_config
