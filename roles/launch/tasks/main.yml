@@ -27,8 +27,8 @@
     assign_public_ip: yes
   register: ec2workers
 
-- debug: var=ec2workers
-- debug: var=ec2workers.instances[0]
+#- debug: var=ec2workers
+#- debug: var=ec2workers.instances[0]
 
 - name: Wait for SSH to come up - Workers
   local_action: wait_for 
