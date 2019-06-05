@@ -16,7 +16,7 @@
             [workers]
 
 - name: Provision EC2 Instances
-  gather_facts: no
+  gather_facts: yes
   hosts: localhost
   vars_files:
     - global_vars/dw-vars.yml
