@@ -1,6 +1,6 @@
 - name: Join Workers To cluster
   shell: |
-    kubeadm join --token {{ kube_token }} \
+          kubeadm join --token {{ kube_token }} \
                  --discovery-token-unsafe-skip-ca-verification \
                  {{ kube_master_ip }}:6443
 
