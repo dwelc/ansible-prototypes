@@ -3,5 +3,6 @@ master_replicas: 1
 cluster_name: "dw-kubernetes-cluster"
 
 #Kubernetes
+#Need to rework kube_master_ip so it returns the private IP, not public
 kube_token: 0ya01m.f8q32wbij2wxg1d6
 kube_master_ip: "{{ hostvars[groups['masters'][0]]['ansible_default_ipv4'].address | default(groups['masters'][0]) }}"
