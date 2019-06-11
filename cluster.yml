@@ -59,3 +59,11 @@
     - global_vars/pub-vars.yml
   roles:
     - network
+
+- name: Install Helm
+  hosts: masters
+  gather_facts: yes
+  vars_files:
+    - global_vars/pub-vars.yml
+  roles:
+    - helm

@@ -1,0 +1,19 @@
+
+- name: Initialise Tiller Server
+  when: helm_install is succeeded
+  shell: |
+            helm init --history-max 200
+  register: tiller_started
+
+- name: Create Service Account with Cluster Admin permissions
+  shell: |
+            kubectl create serviceaccount --namespace kube-system tiller && \
+            kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller && \
+            kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}' 
+  register: tiller_account_created
+
+- name: Clone Portworx Helm Repo
+  command: |
+            git clone https://github.com/portworx/helm
+  register: helm_repo_cloned
+

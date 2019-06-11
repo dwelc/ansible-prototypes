@@ -7,7 +7,7 @@
     keypair: dwelc
     instance_type: t2.medium
     image: ami-07dc734dc14746eab # Ubuntu 18.04 LTS
-    exact_count: 3
+    exact_count: "{{ worker_replicas }}"
     region: eu-west-2 # London
     vpc_subnet_id: subnet-10594e68
     wait: yes

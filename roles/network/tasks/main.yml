@@ -1,9 +1,4 @@
-- name: Configure Calico Networking (RBAC)
+- name: Configure Flannel Networking
   shell: |
-          kubectl apply -f https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
-  run_once: true
-
-- name: Configure Calico Networking
-  shell: |
-          kubectl apply -f https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
+          kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
   run_once: true
