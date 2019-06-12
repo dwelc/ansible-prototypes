@@ -1,8 +1,7 @@
 
 - name: Initialise Tiller Server
-  when: helm_install is succeeded
-  shell: |
-            helm init --history-max 200
+  command: |
+            /snap/bin/helm init --history-max 200
   register: tiller_started
 
 - name: Create Service Account with Cluster Admin permissions
